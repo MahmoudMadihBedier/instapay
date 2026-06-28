@@ -41,12 +41,12 @@ class HomeScreen extends StatelessWidget {
 
                     Appbarsection(),
 
-                    BlocBuilder < NavigatorCubit, NavigatorInitial>(
+                    BlocBuilder<NavigatorCubit, dynamic>(
                       builder: (context, state) {
                         return SegmantationNavigator(
                           selctIndex: state.slectedIndex,
                           ontap: (value) {
-                            state.slectedIndex=value;
+                            state.slectedIndex = value;
                           },
                         );
                       },
@@ -58,8 +58,12 @@ class HomeScreen extends StatelessWidget {
 
             // Page content
             Expanded(
-              child: SingleChildScrollView(
-                child: Column(children: [widgetsselect[selectedindex]]),
+              child: BlocBuilder<NavigatorCubit, dynamic>(
+                builder: (context, state) {
+                  return SingleChildScrollView(
+                    child: Column(children: [widgetsselect[state.slectedIndex]]),
+                  );
+                },
               ),
             ),
           ],

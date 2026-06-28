@@ -1,0 +1,32 @@
+Splash screen Cubit review
+
+What you did right:
+- You created a separate Cubit and State for the splash screen.
+- You used BlocProvider to provide the Cubit to the Splashscreen widget.
+- You used BlocBuilder to read the current state value.
+
+What is not fully correct yet:
+- The splash screen does not really need BlocBuilder for the timer/navigation logic.
+- Future.delayed is inside the builder method. This is risky because build can run more than one time, so the delayed navigation can be scheduled more than one time.
+- Navigation is a side effect, so it should not be done directly inside BlocBuilder.
+- The Cubit method delayDuration only emits the same initial state again, so it does not add useful behavior right now.
+- The word "deuration" should be renamed to "duration" to keep the code clear.
+
+Better Cubit concept:
+- Let the Cubit handle the splash delay.
+- Let the UI listen for a finished state.
+- Use BlocListener for navigation, because BlocListener is for side effects like navigation, snackbars, and dialogs.
+- Use BlocBuilder only when you need to rebuild visible UI based on state.
+
+Suggested state idea:
+- SplashInitial: the splash screen is showing.
+- SplashFinished: the delay is complete and the app should navigate to the next screen.
+
+Suggested flow:
+- In BlocProvider create, call cubit.startSplashTimer().
+- The Cubit waits for the duration.
+- The Cubit emits SplashFinished.
+- BlocListener sees SplashFinished and navigates to VerifyScreen.
+
+Short answer:
+You applied part of the Cubit concept correctly, but the navigation/timer logic is still in the widget builder. Move the delay logic into the Cubit and move navigation into BlocListener to make it a cleaner BLoC/Cubit design.

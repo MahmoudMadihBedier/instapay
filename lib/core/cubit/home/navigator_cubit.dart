@@ -8,7 +8,7 @@ class NavigatorCubit extends Cubit<NavigatorSatate> {
   NavigatorCubit() : super(NavigatorInitial());
 
   void updateIndex(int newindex){
-    ;
+    emit(NewUpdatedindex(newindex));
   }
 
 }

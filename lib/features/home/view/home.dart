@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:instapay/constanst/setting.dart';
 import 'package:instapay/core/cubit/home/navigator_cubit.dart';
 import 'package:instapay/features/Blaancesegmantation/view/balance_segment.dart';
 import 'package:instapay/features/Homesegemaent/view/home_segement.dart';
@@ -10,14 +11,14 @@ import 'package:instapay/features/offerssegmantation/view/offer_segement.dart';
 import 'package:instapay/features/rewordsegmantion/view/reword_segment.dart';
 
 class HomeScreen extends StatelessWidget {
-  static String routName = "homescreen";
+  static const String routName = homeSceen;
 
   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>NavigatorCubit(),
+      create: (BuildContext context) => NavigatorCubit(),
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 247, 238, 238),
 
@@ -62,8 +63,8 @@ class HomeScreen extends StatelessWidget {
                 builder: (context, state) {
                   return SingleChildScrollView(
                     child: Column(
-                      children: [widgetsselect[state.slectedIndex]]
-                      ),
+                      children: [widgetsselect[state.slectedIndex]],
+                    ),
                   );
                 },
               ),

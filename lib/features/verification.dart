@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:instapay/constanst/setting.dart';
 import 'package:instapay/features/home/view/home.dart';
 
 class VerifyScreen extends StatelessWidget {
-  static String routename = "VerifyScreen";
+  static const String routename = verifyScreen;
 
   const VerifyScreen({super.key});
 
@@ -94,20 +95,20 @@ class VerifyScreen extends StatelessWidget {
           // Button
           GestureDetector(
             onTap: () {
-              Navigator.popAndPushNamed(context,HomeScreen.routName );
+              Navigator.pushReplacementNamed(context, HomeScreen.routName);
             },
             child: Container(
               margin: const EdgeInsets.symmetric(horizontal: 35),
-            
+
               height: 40,
-            
+
               width: double.infinity,
-            
+
               decoration: BoxDecoration(
                 color: Color(0xff5059F6),
                 borderRadius: BorderRadius.circular(35),
               ),
-            
+
               child: Center(
                 child: Text(
                   "Verify",

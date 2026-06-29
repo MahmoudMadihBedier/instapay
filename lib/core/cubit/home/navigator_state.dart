@@ -12,5 +12,5 @@ class NavigatorInitial extends NavigatorSatate {
 }
 class NewUpdatedindex extends NavigatorSatate{
   
-  NewUpdatedindex():super(0);
+  NewUpdatedindex(int index ):super(index);
 }

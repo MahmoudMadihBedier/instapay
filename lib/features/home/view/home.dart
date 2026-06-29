@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                         return SegmantationNavigator(
                           selctIndex: state.slectedIndex,
                           ontap: (value) {
-                            state.slectedIndex = value;
+                            context.read<NavigatorCubit>().updateIndex(value);
                           },
                         );
                       },
@@ -61,7 +61,9 @@ class HomeScreen extends StatelessWidget {
               child: BlocBuilder<NavigatorCubit, dynamic>(
                 builder: (context, state) {
                   return SingleChildScrollView(
-                    child: Column(children: [widgetsselect[state.slectedIndex]]),
+                    child: Column(
+                      children: [widgetsselect[state.slectedIndex]]
+                      ),
                   );
                 },
               ),

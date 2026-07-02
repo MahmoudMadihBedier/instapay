@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instapay/constanst/setting.dart';
 import 'package:instapay/core/cubit/home/navigator_cubit.dart';
 import 'package:instapay/features/home/view/home.dart';
+import 'package:instapay/features/profile/view/profile_screen.dart';
 import 'package:instapay/features/verification.dart';
 import 'package:instapay/splashScreen.dart';
 
@@ -28,6 +29,13 @@ class AppRouters {
           builder: (_) => BlocProvider(
             create: (context) => NavigatorCubit(),
             child: HomeScreen(),
+          ),
+        );
+      case profileScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => NavigatorCubit(),
+            child: ProfileScreen(),
           ),
         );
     }

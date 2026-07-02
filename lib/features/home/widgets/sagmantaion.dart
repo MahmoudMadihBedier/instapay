@@ -50,6 +50,7 @@ class _SegmantationNavigatorState extends State<SegmantationNavigator> {
               child: GestureDetector(
                 onTap: () => widget.ontap(index),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     const Gap(4),
                     AnimatedDefaultTextStyle(

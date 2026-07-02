@@ -1,19 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:gap/gap.dart';
 import 'package:instapay/constanst/setting.dart';
 import 'package:instapay/core/cubit/profile/profile_cubit.dart';
-import 'package:instapay/features/profile/view/profile_screen.dart';
 
-class AppBarSection extends StatefulWidget {
-  const AppBarSection({super.key});
+class Appbarsection extends StatefulWidget {
+  const Appbarsection({super.key});
 
   @override
-  State<AppBarSection> createState() => _AppBarSectionState();
+  State<Appbarsection> createState() => _AppbarsectionState();
 }
 
-class _AppBarSectionState extends State<AppBarSection> {
+class _AppbarsectionState extends State<Appbarsection> {
+  
+  Widget _loaderHeader(){
+    return SpinKitThreeBounce(
+                      itemBuilder: (context, index) {
+                        return DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: index.isEven ? Colors.blue : Colors.grey,
+                          ),
+                        );
+                      },
+                    );
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -21,13 +34,7 @@ class _AppBarSectionState extends State<AppBarSection> {
       child: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           if (state is ProfileLoading) {
-            // retun snakbar
-            return ScaffoldMessenger(
-              child:SnackBar(
-                content: Text("Loading profile..."),
-                duration: Duration(seconds: 2),
-              ),
-            );
+            return _loaderHeader();
           } else if (state is ProfileLoaded) {
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,9 +42,7 @@ class _AppBarSectionState extends State<AppBarSection> {
                 InkWell(
                   onTap: () {
                     context.read<ProfileCubit>().loadProfile();
-                    if (state is ProfileLoaded) {
-                      Navigator.pushNamed(context,arguments: state, profileScreen );
-                    }
+                    Navigator.pushNamed(context, profileScreen);
                   },
                   child: CircleAvatar(
                     backgroundColor: Colors.blue,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instapay/features/profile/shared/header_card.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -6,9 +7,13 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("Profile Screen"),
-      ),
+      backgroundColor: Colors.white,
+      body: Column(
+          children: [
+            HeaderCard()
+          ],
+      )
+      
     );
   }
 }

@@ -3,9 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:instapay/constanst/setting.dart';
 import 'package:instapay/core/cubit/home/navigator_cubit.dart';
+import 'package:instapay/core/cubit/profile/profile_cubit.dart';
 import 'package:instapay/features/Blaancesegmantation/view/balance_segment.dart';
 import 'package:instapay/features/Homesegemaent/view/home_segement.dart';
-import 'package:instapay/features/home/widgets/appBarSection.dart';
+import 'package:instapay/features/home/widgets/app_bar_section.dart';
 import 'package:instapay/features/home/widgets/sagmantaion.dart';
 import 'package:instapay/features/offerssegmantation/view/offer_segement.dart';
 import 'package:instapay/features/rewordsegmantion/view/reword_segment.dart';
@@ -13,12 +14,17 @@ import 'package:instapay/features/rewordsegmantion/view/reword_segment.dart';
 class HomeScreen extends StatelessWidget {
   static const String routName = homeSceen;
 
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => NavigatorCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (BuildContext context) => NavigatorCubit()),
+        BlocProvider(
+          create: (BuildContext context) => ProfileCubit()..loadProfile(),
+        ),
+      ],
       child: Scaffold(
         backgroundColor: const Color.fromARGB(255, 247, 238, 238),
 
@@ -33,14 +39,14 @@ class HomeScreen extends StatelessWidget {
                 bottomRight: Radius.circular(25),
               ),
 
-              child: Container(
+              child: SizedBox(
                 height: 180,
 
                 child: Column(
                   children: [
                     const Gap(80),
 
-                    Appbarsection(),
+                    const AppBarSection(),
 
                     BlocBuilder<NavigatorCubit, dynamic>(
                       builder: (context, state) {

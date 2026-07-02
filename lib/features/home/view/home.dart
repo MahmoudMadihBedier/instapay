@@ -6,7 +6,7 @@ import 'package:instapay/core/cubit/home/navigator_cubit.dart';
 import 'package:instapay/core/cubit/profile/profile_cubit.dart';
 import 'package:instapay/features/Blaancesegmantation/view/balance_segment.dart';
 import 'package:instapay/features/Homesegemaent/view/home_segement.dart';
-import 'package:instapay/features/home/widgets/app_bar_section.dart';
+import 'package:instapay/features/home/widgets/appBarSection.dart';
 import 'package:instapay/features/home/widgets/sagmantaion.dart';
 import 'package:instapay/features/offerssegmantation/view/offer_segement.dart';
 import 'package:instapay/features/rewordsegmantion/view/reword_segment.dart';
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const Gap(80),
 
-                    const AppBarSection(),
+                    const Appbarsection(),
 
                     BlocBuilder<NavigatorCubit, dynamic>(
                       builder: (context, state) {
